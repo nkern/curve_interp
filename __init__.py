@@ -1,5 +1,5 @@
 """
-Localized (Nearest Neighbor) Polynomial Interpolation of a discrete but smooth function
+Localized (Nearest Neighbor) Polynomial Interpolation of a smooth function
 Nicholas Kern
 2016
 """
