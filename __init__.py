@@ -1,5 +1,6 @@
 """
 Localized (Nearest Neighbor) Polynomial Interpolation of a smooth function
+
 Nicholas Kern
 2016
 """
@@ -73,23 +74,39 @@ def get_nearest(x,xarr,x_id,y_curve,n=3):
 
 def curve_interp(x_array, x_curve, y_curve, n=3, degree=2, extrap_deg=1, extrap_n=2):
 	""" 
-	curve_interp(x_array, x_curve, y_curve, n=3, degree=2, extrap_deg=1, extrap_n=2)
-	- Interpolate smooth curve(s) via localized polynomial regression
-	- Fit a polynomial of <degree> degree to <n> nearest points
-	x_array : row vector (ndarray) of desired x points at which we interpolate the curve
-	x_curve : row vector (ndarray) of x-values of the curve we wish to interpolate, with length x_num
-	y_curve : matrix (ndarray) with shape (x_num, c_num), containing y-values of curve(s) we wish to interpolate
+	Interpolate smooth curve(s) via localized polynomial regression
+	by fitting a polynomial of <degree> degree to <n> nearest points.
 
-	n : number of points to use in fit
-	degree : degree of polynomial fit
-	extrap_deg : degree of polynomial fit when extrapolating
-	extrap_n : number of points to use in extrapolating fit
+    Input:
+    ------
+    x_array : ndarray (shape=[xarr_num,])
+        X-axis of desired interpolation points.
 
-	- Note there can be multiple curves we independently fit for 
-		simultaneously--c_num is the number of curves we fit for--but their y-values 
-		must all be evaluated at the *same* x-values.
+    x_curve : ndarray (shape=[xcurve_num,])
+        X-axis of samples to-be-interpolated.
+
+    y_curve : ndarray (shape=[xcurve_num,curve_num])
+        Y-axis of samples to-be-interpolated.
+        y_curve must be 2 dimensional with second axis 
+        being the number of individual y-curves to be interpolated.
+    
+    n : int (default=3)
+        Number of nearest neighbors points to use in polynomial fit
+
+    degree : int (default=2)
+        Degree of polynomial to fit to nearest neighbors for interpolation
+
+    extrap_deg : int (default=1)
+        Degree of polynomial to fit when outside of training samples (i.e. extrapolating)
+
+    extrap_n : int (default=2)
+        Number of NN points to use in polynomial fit when extrapolating
+
+    Output:
+    -------
+    y_interp : ndarray (shape=[xarr_num, curve_num])
+        Y-axis of interpolated points at x_array for curve_num number of y-curves
 	"""
-
 	# Order data by xvalues
 	sort = np.argsort(x_array)
 	x_array = x_array[sort]
