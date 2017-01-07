@@ -1,7 +1,9 @@
 ## curve_interp
 
-Nicholas Kern
+Localized polynomial interpolation on a set of points drawn from an underlying a smooth function
 
+Nicholas Kern
+<br>
 January, 2017
 
 
