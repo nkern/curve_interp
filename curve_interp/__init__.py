@@ -75,7 +75,7 @@ def get_nearest(x,xarr,x_id,y_curve,n=3,ignore_same=False):
     nn_id = x_id[np.argsort(dist)][:n]
     return nn_id[np.argsort(nn_id)]
 
-def curve_interp(x_array, x_curve, y_curve, n=3, degree=2, extrap_deg=1, extrap_n=2, iterate=0, ignore_same=False):
+def curve_interp(x_array, x_curve, y_curve, n=3, degree=2, extrap_deg=1, extrap_n=2, ignore_same=False):
     """ 
     Interpolate smooth curve(s) via localized polynomial regression
     by fitting a polynomial of <degree> degree to <n> nearest points.
@@ -104,11 +104,6 @@ def curve_interp(x_array, x_curve, y_curve, n=3, degree=2, extrap_deg=1, extrap_
 
     extrap_n : int (default=2)
         Number of NN points to use in polynomial fit when extrapolating
-
-    interate : int (default=1)
-        Number of times to iterate curve_interp
-        if iterate > 0, redo curve_interp with
-        previously interpolated points
 
     ignore_same: bool (default=False)
         If an x value in x_array falls ontop of an x value in x_curve,
@@ -208,8 +203,4 @@ def curve_interp(x_array, x_curve, y_curve, n=3, degree=2, extrap_deg=1, extrap_
 
     y_interp = np.array(y_interp)
 
-    # Iterate
-    for it in range(iterate):
-        y_interp = curve_interp(x_array, x_array, y_interp, n=n, degree=degree,
-                    extrap_deg=extrap_deg, extrap_n=extrap_n, iterate=0, ignore_same=True)
     return y_interp

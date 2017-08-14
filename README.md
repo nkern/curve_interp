@@ -6,9 +6,11 @@ Nicholas Kern
 <br>
 January, 2017
 
+<img src='data/fig1.png' width=400px/>
 
 ### Install
 Clone this directory and run the setup.py script
 ```bash
 python setup.py install
 ```
+
