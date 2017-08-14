@@ -8,7 +8,7 @@ January, 2017
 
 
 ### Install
-Clone this directory and add it to your PYTHONPATH via
+Clone this directory and run the setup.py script
 ```bash
-export PYTHONPATH=<where_curve_interp_lives>:$PYTHONPATH
+python setup.py install
 ```
